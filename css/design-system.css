@@ -1,0 +1,129 @@
+/**
+ * @file design-system.css
+ * FarmWise Light Farmer-Friendly Design System
+ * Bright, Clean, Outdoor-Readable Theme with Multilingual Regional Script Support
+ */
+
+:root {
+  /* Core Agricultural Light Palette */
+  --primary-900: #052e16;
+  --primary-800: #14532d;
+  --primary-700: #15803d;
+  --primary-600: #16a34a; /* Main Action Green */
+  --primary-500: #22c55e;
+  --primary-400: #4ade80;
+  --primary-300: #86efac;
+  --primary-200: #bbf7d0;
+  --primary-100: #dcfce7;
+  --primary-50:  #f0fdf4;
+
+  /* Natural Earth Accents */
+  --accent-earth: #78350f;
+  --accent-amber: #d97706;
+  --accent-amber-light: #fffbeb;
+  --accent-amber-border: #fde68a;
+  --accent-amber-text: #92400e;
+
+  --accent-blue: #0284c7;
+  --accent-blue-light: #f0f9ff;
+  --accent-blue-border: #bae6fd;
+  --accent-blue-text: #0369a1;
+
+  --accent-rose: #dc2626;
+  --accent-rose-light: #fef2f2;
+  --accent-rose-border: #fecaca;
+  --accent-rose-text: #991b1b;
+
+  --accent-teal: #0f766e;
+  --accent-teal-light: #f0fdfa;
+  --accent-teal-border: #99f6e4;
+
+  /* Bright, Crisp Surface Colors (No Dark Backgrounds) */
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --bg-muted: #f1f5f9;
+  --bg-highlight: #f0fdf4;
+
+  /* High-Contrast Borders */
+  --border-subtle: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --border-card: #e2e8f0;
+  --border-green: #86efac;
+  --border-focus: #16a34a;
+
+  /* High-Legibility Charcoal Typography */
+  --font-sans: 'Outfit', 'Inter', 'Mukta', 'Noto Sans Devanagari', 'Noto Sans Gurmukhi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-indic: 'Mukta', 'Noto Sans Devanagari', 'Noto Sans Gurmukhi', sans-serif;
+
+  --text-main: #0f172a;       /* Deep Slate Charcoal */
+  --text-sub: #334155;        /* Medium Dark Charcoal */
+  --text-muted: #64748b;      /* Slate Gray for secondary captions */
+  --text-emerald: #15803d;    /* Crisp Forest Green */
+  --text-amber: #b45309;      /* Dark Amber for high outdoor contrast */
+  --text-rose: #b91c1c;       /* Dark Red */
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Soft Natural Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06), 0 2px 4px rgba(15, 23, 42, 0.03);
+  --shadow-lg: 0 10px 25px rgba(15, 23, 42, 0.08), 0 4px 10px rgba(15, 23, 42, 0.04);
+  --shadow-card-hover: 0 12px 28px rgba(22, 163, 74, 0.12), 0 4px 10px rgba(0, 0, 0, 0.05);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+}
+
+/* Base Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background-color: var(--bg-app);
+  background-image: 
+    radial-gradient(at 10% 10%, rgba(34, 197, 94, 0.05) 0px, transparent 50%),
+    radial-gradient(at 90% 90%, rgba(2, 132, 199, 0.04) 0px, transparent 50%);
+  background-attachment: fixed;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-main);
+}
+
+a {
+  color: var(--primary-700);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-800);
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}

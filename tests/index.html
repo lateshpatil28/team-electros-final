@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FarmWise Decision Engine Test Runner</title>
+  <style>
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a1811; color: #f8fafc; padding: 2rem; }
+    h1 { color: #34d399; }
+    .test-card { background: #0f2b1c; border: 1px solid #164e31; border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; }
+    .pass { border-left: 5px solid #10b981; }
+    .fail { border-left: 5px solid #ef4444; }
+    .badge { display: inline-block; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: bold; font-size: 0.8rem; }
+    .badge-pass { background: #065f46; color: #a7f3d0; }
+    .badge-fail { background: #991b1b; color: #fecaca; }
+    .summary { font-size: 1.2rem; margin: 1.5rem 0; padding: 1rem; background: #062b18; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>FarmWise Automated Verification Suite</h1>
+  <p>Testing Phase 1 Core Decision Engine (Scenarios A through G)</p>
+  <div id="summary" class="summary">Running tests...</div>
+  <div id="results"></div>
+
+  <script type="module">
+    import { runAllTests } from './test-decision-engine.js';
+    const { passedCount, failedCount, results } = runAllTests();
+
+    const sumEl = document.getElementById('summary');
+    sumEl.innerHTML = `<strong>Result:</strong> ${passedCount} Tests Passed, ${failedCount} Failed.`;
+    sumEl.style.color = failedCount === 0 ? '#34d399' : '#f87171';
+
+    const resEl = document.getElementById('results');
+    resEl.innerHTML = results.map(r => `
+      <div class="test-card ${r.status === 'PASSED' ? 'pass' : 'fail'}">
+        <span class="badge ${r.status === 'PASSED' ? 'badge-pass' : 'badge-fail'}">${r.status}</span>
+        <strong>${r.name}</strong>
+        <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: #cbd5e1;">${r.details}</p>
+      </div>
+    `).join('');
+  </script>
+</body>
+</html>

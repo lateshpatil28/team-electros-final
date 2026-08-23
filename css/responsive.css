@@ -1,0 +1,141 @@
+/**
+ * @file responsive.css
+ * Mobile-First Responsive Breakpoints for FarmWise Light Theme
+ */
+
+@media (max-width: 1024px) {
+  .section-grid-2col {
+    grid-template-columns: 1fr;
+  }
+
+  .rec-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .breakdown-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .plans-comparison-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-dual-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .whatif-controls-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sim-control-group.sim-span-2 {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .main-content {
+    padding: 1rem 0.75rem 3rem;
+    gap: 1.5rem;
+  }
+
+  .app-header {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .brand-name {
+    font-size: 1.15rem;
+  }
+
+  .brand-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1.3rem;
+  }
+
+  .header-lang-selector {
+    order: 2;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .header-nav {
+    display: none; /* Keep mobile header clean */
+  }
+
+  .fields-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field-group.span-2 {
+    grid-column: span 1;
+  }
+
+  .rec-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .breakdown-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-metrics-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recommendation-hero-card {
+    padding: 1.25rem;
+  }
+
+  .rec-title {
+    font-size: 1.35rem;
+  }
+
+  .rec-header {
+    flex-direction: column;
+  }
+
+  .rec-score-box {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0.65rem 1rem;
+  }
+
+  .whatif-header {
+    flex-direction: column;
+  }
+
+  .whatif-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .demo-bar-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+  }
+
+  .demo-presets-group, .demo-quick-tests, .demo-reset-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .demo-select {
+    flex: 1;
+  }
+
+  .journey-steps-list {
+    display: none;
+  }
+}
