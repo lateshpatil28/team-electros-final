@@ -1,48 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FarmWise - Farmer-First AI Agronomic Decision Support System & What-If Simulator for Precision Farming.">
+  <meta name="description"
+    content="FarmWise - Farmer-First AI Agronomic Decision Support System & What-If Simulator for Precision Farming.">
   <title>FarmWise - Farmer-First AI Decision Engine</title>
 
   <!-- Google Fonts: Outfit, Inter, Mukta (Devanagari/Hindi/Marathi), Noto Sans Gurmukhi (Punjabi) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Mukta:wght@400;500;600;700;800&family=Noto+Sans+Gurmukhi:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Mukta:wght@400;500;600;700;800&family=Noto+Sans+Gurmukhi:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
 
   <!-- Core Stylesheets -->
   <link rel="stylesheet" href="css/design-system.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
+
+<body data-page="home">
 
   <!-- Top Application Header with Prominent Language Selector and Settings -->
   <header class="app-header">
     <div class="header-inner">
-      <div class="brand-logo" onclick="scrollToSection('journey-banner-section')" style="cursor: pointer;">
+      <a href="index.html" class="brand-logo" style="text-decoration: none;">
         <div class="brand-icon">🌱</div>
         <div class="brand-name">Farm<span>Wise</span></div>
         <span class="brand-badge" data-i18n="app.badge">Punjab MVP</span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="header-nav" aria-label="Main Navigation">
+        <a href="index.html" class="header-nav-link active" data-page="home">
+          <span>🏠</span>
+          <span data-i18n="nav.dashboard">Home</span>
+        </a>
+        <a href="profile.html" class="header-nav-link" data-page="profile">
+          <span>📝</span>
+          <span data-i18n="nav.profile">Farm Profile</span>
+        </a>
+        <a href="advisory.html" class="header-nav-link" data-page="advisory">
+          <span>⭐</span>
+          <span data-i18n="nav.recommendation">Crop Advisory</span>
+        </a>
+        <a href="crop-scan.html" class="header-nav-link" data-page="crop-scan">
+          <span>🔍</span>
+          <span data-i18n="nav.cropScan">Crop Scan</span>
+        </a>
+        <a href="assistant.html" class="header-nav-link" data-page="assistant">
+          <span>🤖</span>
+          <span data-i18n="nav.assistant">AI Assistant</span>
+        </a>
+        <a href="weather.html" class="header-nav-link" data-page="weather">
+          <span>🌦️</span>
+          <span data-i18n="nav.weather">Weather</span>
+        </a>
+        <a href="iot.html" class="header-nav-link" data-page="iot">
+          <span>📡</span>
+          <span data-i18n="nav.iot">IoT</span>
+        </a>
+      </nav>
+
+      <!-- Multilingual Language Switcher -->
+      <div class="header-lang-selector" id="lang-selector-group">
+        <button type="button" class="lang-btn active" data-lang="en">English</button>
+        <button type="button" class="lang-btn" data-lang="pa">ਪੰਜਾਬੀ</button>
+        <button type="button" class="lang-btn" data-lang="hi">हिन्दी</button>
+        <button type="button" class="lang-btn" data-lang="mr">मराठी</button>
       </div>
 
-        <!-- Multilingual Language Switcher -->
-        <div class="header-lang-selector" id="lang-selector-group">
-          <button type="button" class="lang-btn active" data-lang="en">English</button>
-          <button type="button" class="lang-btn" data-lang="pa">ਪੰਜਾਬੀ</button>
-          <button type="button" class="lang-btn" data-lang="hi">हिन्दी</button>
-          <button type="button" class="lang-btn" data-lang="mr">मराठी</button>
-        </div>
-
-        <!-- Header Actions: Settings & Collapsible Menu Trigger -->
-        <div class="header-actions-group flex-row gap-xs">
-          <button type="button" class="btn-settings-header" id="btn-open-settings-header" title="Settings & API Key">⚙️</button>
-          <button type="button" class="btn-nav-menu" id="btn-nav-menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-drawer">
-            <span class="nav-menu-icon">☰</span>
-            <span data-i18n="nav.menu">Menu</span>
-          </button>
-        </div>
+      <!-- Header Actions: Settings & Collapsible Menu Trigger -->
+      <div class="header-actions-group flex-row gap-xs">
+        <button type="button" class="btn-settings-header" id="btn-open-settings-header"
+          title="Settings & API Key">⚙️</button>
+        <button type="button" class="btn-nav-menu" id="btn-nav-menu" aria-label="Open navigation menu"
+          aria-expanded="false" aria-controls="nav-drawer">
+          <span class="nav-menu-icon">☰</span>
+          <span data-i18n="nav.menu">Menu</span>
+        </button>
       </div>
     </div>
   </header>
@@ -60,53 +98,38 @@
           <div class="drawer-subtitle" data-i18n="nav.allSections">All Modules & Sections</div>
         </div>
       </div>
-      <button type="button" id="btn-close-nav-drawer" class="btn-drawer-close" aria-label="Close navigation menu">✕</button>
+      <button type="button" id="btn-close-nav-drawer" class="btn-drawer-close"
+        aria-label="Close navigation menu">✕</button>
     </div>
 
     <div class="drawer-body">
       <div class="drawer-section-heading" data-i18n="nav.allSections">All Modules & Navigation</div>
       <nav class="drawer-nav-list" id="drawer-nav-list">
-        <a href="#journey-banner-section" class="drawer-nav-item active" data-target="journey-banner-section">
-          <span class="drawer-nav-icon">📊</span>
-          <span class="drawer-nav-text" data-i18n="nav.dashboard">Dashboard</span>
+        <a href="index.html" class="drawer-nav-item active" data-page="home">
+          <span class="drawer-nav-icon">🏠</span>
+          <span class="drawer-nav-text" data-i18n="nav.dashboard">Home</span>
         </a>
-        <a href="#section-profile" class="drawer-nav-item" data-target="section-profile">
+        <a href="profile.html" class="drawer-nav-item" data-page="profile">
           <span class="drawer-nav-icon">📝</span>
           <span class="drawer-nav-text" data-i18n="nav.profile">Farm Profile</span>
         </a>
-        <a href="#section-recommendation" class="drawer-nav-item" data-target="section-recommendation">
-          <span class="drawer-nav-icon">★</span>
+        <a href="advisory.html" class="drawer-nav-item" data-page="advisory">
+          <span class="drawer-nav-icon">⭐</span>
           <span class="drawer-nav-text" data-i18n="nav.recommendation">Crop Advisory</span>
         </a>
-        <a href="#section-alternatives" class="drawer-nav-item" data-target="section-alternatives">
-          <span class="drawer-nav-icon">⚖️</span>
-          <span class="drawer-nav-text" data-i18n="nav.alternatives">Alternative Plans</span>
-        </a>
-        <a href="#section-whatif" class="drawer-nav-item" data-target="section-whatif">
-          <span class="drawer-nav-icon">⚡</span>
-          <span class="drawer-nav-text" data-i18n="nav.whatif">What-If Simulator</span>
-        </a>
-        <a href="#section-cropscan" class="drawer-nav-item" data-target="section-cropscan">
+        <a href="crop-scan.html" class="drawer-nav-item" data-page="crop-scan">
           <span class="drawer-nav-icon">🔍</span>
           <span class="drawer-nav-text" data-i18n="nav.cropScan">Crop Scan (AI)</span>
         </a>
-        <a href="#section-assistant" class="drawer-nav-item" data-target="section-assistant">
+        <a href="assistant.html" class="drawer-nav-item" data-page="assistant">
           <span class="drawer-nav-icon">🤖</span>
           <span class="drawer-nav-text" data-i18n="nav.assistant">AI Farm Assistant</span>
         </a>
-        <a href="#section-library" class="drawer-nav-item" data-target="section-library">
-          <span class="drawer-nav-icon">📚</span>
-          <span class="drawer-nav-text" data-i18n="nav.library">Knowledge Library</span>
-        </a>
-        <a href="#section-regional" class="drawer-nav-item" data-target="section-regional">
-          <span class="drawer-nav-icon">🗺️</span>
-          <span class="drawer-nav-text" data-i18n="nav.regionalCrops">Regional Crops</span>
-        </a>
-        <a href="#section-weather" class="drawer-nav-item" data-target="section-weather">
+        <a href="weather.html" class="drawer-nav-item" data-page="weather">
           <span class="drawer-nav-icon">🌦️</span>
           <span class="drawer-nav-text" data-i18n="nav.weather">Weather Forecast</span>
         </a>
-        <a href="#section-iot" class="drawer-nav-item" data-target="section-iot">
+        <a href="iot.html" class="drawer-nav-item" data-page="iot">
           <span class="drawer-nav-icon">📡</span>
           <span class="drawer-nav-text" data-i18n="nav.iot">IoT Farm Monitor</span>
         </a>
@@ -133,114 +156,161 @@
   <!-- Main Container -->
   <main class="main-content">
 
-    <!-- User Journey Stepper Banner -->
-    <section class="journey-banner" id="journey-banner-section">
-      <div class="journey-title-row">
-        <h1 class="journey-main-title" data-i18n="app.subtitle">Farmer-First AI Decision Engine & Decision Support</h1>
+    <!-- Hero Welcome Card & Live Farm Context Banner -->
+    <div class="home-hero-card">
+      <div class="home-hero-header">
+        <div>
+          <h1 class="home-hero-title" data-i18n="app.subtitle">Farmer-First AI Decision Engine & Decision Support</h1>
+          <p class="home-hero-desc">
+            Empowering farmers across Punjab and Maharashtra with precision agronomic recommendations, live weather
+            forecasting, multimodal crop disease diagnosis, and real-time What-If economic simulations.
+          </p>
+        </div>
         <span class="badge badge-emerald" data-i18n="app.deterministicActive">Deterministic Calculation Active</span>
       </div>
+
+      <!-- Live Context Status Strip -->
+      <div class="home-status-strip" id="home-status-strip">
+        <!-- Rendered reactively from farmStore in app.js -->
+      </div>
+    </div>
+
+    <!-- Farmer Journey Stepper -->
+    <section class="journey-banner" id="journey-banner-section">
+      <div class="journey-title-row">
+        <h2 class="journey-main-title" style="font-size: 1.15rem;">🚜 Guided Agronomic Journey</h2>
+      </div>
       <div class="journey-steps-list">
-        <div class="step-chip active" onclick="scrollToSection('section-profile')" data-i18n="stepper.step1">
+        <a href="profile.html" class="step-chip active" style="text-decoration: none;" data-i18n="stepper.step1">
           1. Farm Profile
-        </div>
+        </a>
         <span class="step-arrow">→</span>
-        <div class="step-chip" onclick="scrollToSection('section-profile')" data-i18n="stepper.step2">
+        <a href="profile.html" class="step-chip" style="text-decoration: none;" data-i18n="stepper.step2">
           2. Farm Context
-        </div>
+        </a>
         <span class="step-arrow">→</span>
-        <div class="step-chip" onclick="scrollToSection('section-recommendation')" data-i18n="stepper.step3">
+        <a href="advisory.html" class="step-chip" style="text-decoration: none;" data-i18n="stepper.step3">
           3. Generate Plans
-        </div>
+        </a>
         <span class="step-arrow">→</span>
-        <div class="step-chip" onclick="scrollToSection('section-recommendation')" data-i18n="stepper.step4">
+        <a href="advisory.html" class="step-chip" style="text-decoration: none;" data-i18n="stepper.step4">
           4. Recommended Plan & Why?
-        </div>
+        </a>
         <span class="step-arrow">→</span>
-        <div class="step-chip" onclick="scrollToSection('section-whatif')" data-i18n="stepper.step5">
+        <a href="advisory.html#whatif-simulator-container" class="step-chip" style="text-decoration: none;"
+          data-i18n="stepper.step5">
           5. What-If Simulator
-        </div>
+        </a>
         <span class="step-arrow">→</span>
-        <div class="step-chip" onclick="scrollToSection('section-whatif')" data-i18n="stepper.step6">
+        <a href="advisory.html#whatif-simulator-container" class="step-chip" style="text-decoration: none;"
+          data-i18n="stepper.step6">
           6. Recalculate
+        </a>
+      </div>
+    </section>
+
+    <!-- 6 Quick Access Module Cards -->
+    <div class="home-section-title-row">
+      <h2 class="home-section-title">⚡ Quick Access Modules</h2>
+    </div>
+
+    <div class="home-modules-grid">
+      <!-- 1. Farm Profile -->
+      <a href="profile.html" class="home-module-card">
+        <div>
+          <div class="home-module-top">
+            <div class="home-module-icon-wrap">📝</div>
+            <span class="home-module-badge badge badge-emerald">Step 1</span>
+          </div>
+          <h3 class="home-module-title" data-i18n="nav.profile">Farm Profile</h3>
+          <p class="home-module-desc">Configure your farmer identity, crop selection, crop growth stage, acreage,
+            budget, soil conditions, and water availability.</p>
         </div>
-      </div>
-    </section>
+        <span class="home-module-action">Manage Farm Profile →</span>
+      </a>
 
-    <!-- Top 2-Column Section: Profile Form + Live Context Display -->
-    <section id="section-profile" class="section-grid-2col">
-      <!-- Farm Profile Form -->
-      <div class="form-card" id="farm-profile-container">
-        <!-- Rendered & localized by profileForm.js -->
-      </div>
-
-      <!-- Live Centralized Farm Context Display -->
-      <div class="context-summary-wrapper">
-        <div id="farm-context-summary">
-          <!-- Populated by contextDisplay.js -->
+      <!-- 2. Crop Advisory -->
+      <a href="advisory.html" class="home-module-card">
+        <div>
+          <div class="home-module-top">
+            <div class="home-module-icon-wrap">⭐</div>
+            <span class="home-module-badge badge badge-primary">Recommended</span>
+          </div>
+          <h3 class="home-module-title" data-i18n="nav.recommendation">Crop Advisory & What-If</h3>
+          <p class="home-module-desc">View tailored agronomic plans, transparent cost/water breakdown, "Why this Plan?",
+            alternative strategies, and market price simulation.</p>
         </div>
-      </div>
-    </section>
+        <span class="home-module-action">View Crop Advisory →</span>
+      </a>
 
-    <!-- Recommended Plan Hero View -->
-    <section id="section-recommendation">
-      <div id="recommended-plan-container">
-        <!-- Populated by recommendationView.js -->
-      </div>
-    </section>
+      <!-- 3. Crop Scan -->
+      <a href="crop-scan.html" class="home-module-card">
+        <div>
+          <div class="home-module-top">
+            <div class="home-module-icon-wrap">🔍</div>
+            <span class="home-module-badge badge badge-amber">AI Vision</span>
+          </div>
+          <h3 class="home-module-title" data-i18n="nav.cropScan">Crop Scan (AI)</h3>
+          <p class="home-module-desc">Upload leaf and pest photos for real-time multimodal diagnosis with Gemini AI,
+            treatment actions, and automatic risk sync.</p>
+        </div>
+        <span class="home-module-action">Scan Plant Disease →</span>
+      </a>
 
-    <!-- Alternative Plans & Feasibility Comparison -->
-    <section id="section-alternatives">
-      <div id="alternative-plans-container">
-        <!-- Populated by alternativesView.js -->
-      </div>
-    </section>
+      <!-- 4. AI Assistant -->
+      <a href="assistant.html" class="home-module-card">
+        <div>
+          <div class="home-module-top">
+            <div class="home-module-icon-wrap">🤖</div>
+            <span class="home-module-badge badge badge-indigo">Voice Ready</span>
+          </div>
+          <h3 class="home-module-title" data-i18n="nav.assistant">AI Farm Assistant</h3>
+          <p class="home-module-desc">Ask agronomic questions in English, Punjabi, Hindi, or Marathi with context-aware
+            responses and audio read-aloud TTS.</p>
+        </div>
+        <span class="home-module-action">Chat with Assistant →</span>
+      </a>
 
-    <!-- Interactive Real-Time What-If Simulator -->
-    <section id="section-whatif">
-      <div id="whatif-simulator-container">
-        <!-- Populated by whatIfSimulator.js -->
-      </div>
-    </section>
+      <!-- 5. Weather -->
+      <a href="weather.html" class="home-module-card">
+        <div>
+          <div class="home-module-top">
+            <div class="home-module-icon-wrap">🌦️</div>
+            <span class="home-module-badge badge badge-sky">Live Agro-Meteo</span>
+          </div>
+          <h3 class="home-module-title" data-i18n="nav.weather">Weather Forecast</h3>
+          <p class="home-module-desc">5-day precision forecast from Open-Meteo with rainfall probabilities, spray
+            windows, temperature, and soil moisture synergy.</p>
+        </div>
+        <span class="home-module-action">Check Weather →</span>
+      </a>
 
-    <!-- Multimodal AI Crop Disease Scanner -->
-    <section id="section-cropscan">
-      <div id="crop-scan-container">
-        <!-- Populated by cropScanView.js -->
-      </div>
-    </section>
+      <!-- 6. IoT Farm Monitor -->
+      <a href="iot.html" class="home-module-card">
+        <div>
+          <div class="home-module-top">
+            <div class="home-module-icon-wrap">📡</div>
+            <span class="home-module-badge badge badge-purple">Telemetry</span>
+          </div>
+          <h3 class="home-module-title" data-i18n="nav.iot">IoT Farm Monitor</h3>
+          <p class="home-module-desc">Real-time soil sensor telemetry simulation, threshold alerts, and open-source
+            ESP32 / LoRaWAN MQTT hardware blueprints.</p>
+        </div>
+        <span class="home-module-action">Open IoT Monitor →</span>
+      </a>
+    </div>
 
-    <!-- Context-Aware AI Farm Assistant -->
-    <section id="section-assistant">
-      <div id="ai-assistant-container">
-        <!-- Populated by assistantView.js -->
-      </div>
-    </section>
-
-    <!-- Multilingual Audio + Text Knowledge Library -->
-    <section id="section-library">
-      <div id="knowledge-library-container">
-        <!-- Populated by knowledgeLibraryView.js -->
-      </div>
-    </section>
-
-    <!-- Regional Crop Explorer -->
-    <section id="section-regional">
+    <!-- Regional Crop Explorer Section -->
+    <section id="section-regional" class="mt-xl">
       <div id="regional-crops-container">
         <!-- Populated by regionalCropsView.js -->
       </div>
     </section>
 
-    <!-- Agro-Weather & 5-Day Rainfall Forecast -->
-    <section id="section-weather">
-      <div id="weather-container">
-        <!-- Populated by weatherView.js -->
-      </div>
-    </section>
-
-    <!-- IoT Farm Monitor (Simulation Mode & Hardware Specs) -->
-    <section id="section-iot">
-      <div id="iot-monitor-container">
-        <!-- Populated by iotMonitorView.js -->
+    <!-- Multilingual Audio + Text Knowledge Library Section -->
+    <section id="section-library" class="mt-xl">
+      <div id="knowledge-library-container">
+        <!-- Populated by knowledgeLibraryView.js -->
       </div>
     </section>
 
@@ -252,4 +322,5 @@
   <!-- Application Bootstrap -->
   <script type="module" src="js/app.js"></script>
 </body>
+
 </html>

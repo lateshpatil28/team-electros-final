@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Crop Scan - Multimodal AI Agronomic Disease Diagnostics & Leaf Pathology Scanner.">
+  <title>Crop Scan (AI) - FarmWise</title>
+
+  <!-- Google Fonts: Outfit, Inter, Mukta (Devanagari/Hindi/Marathi), Noto Sans Gurmukhi (Punjabi) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Mukta:wght@400;500;600;700;800&family=Noto+Sans+Gurmukhi:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-page="crop-scan">
+
+  <!-- Top Application Header with Prominent Language Selector and Settings -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo" style="text-decoration: none;">
+        <div class="brand-icon">🌱</div>
+        <div class="brand-name">Farm<span>Wise</span></div>
+        <span class="brand-badge" data-i18n="app.badge">Punjab MVP</span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="header-nav" aria-label="Main Navigation">
+        <a href="index.html" class="header-nav-link" data-page="home">
+          <span>🏠</span>
+          <span data-i18n="nav.dashboard">Home</span>
+        </a>
+        <a href="profile.html" class="header-nav-link" data-page="profile">
+          <span>📝</span>
+          <span data-i18n="nav.profile">Farm Profile</span>
+        </a>
+        <a href="advisory.html" class="header-nav-link" data-page="advisory">
+          <span>⭐</span>
+          <span data-i18n="nav.recommendation">Crop Advisory</span>
+        </a>
+        <a href="crop-scan.html" class="header-nav-link active" data-page="crop-scan">
+          <span>🔍</span>
+          <span data-i18n="nav.cropScan">Crop Scan</span>
+        </a>
+        <a href="assistant.html" class="header-nav-link" data-page="assistant">
+          <span>🤖</span>
+          <span data-i18n="nav.assistant">AI Assistant</span>
+        </a>
+        <a href="weather.html" class="header-nav-link" data-page="weather">
+          <span>🌦️</span>
+          <span data-i18n="nav.weather">Weather</span>
+        </a>
+        <a href="iot.html" class="header-nav-link" data-page="iot">
+          <span>📡</span>
+          <span data-i18n="nav.iot">IoT</span>
+        </a>
+      </nav>
+
+      <!-- Multilingual Language Switcher -->
+      <div class="header-lang-selector" id="lang-selector-group">
+        <button type="button" class="lang-btn active" data-lang="en">English</button>
+        <button type="button" class="lang-btn" data-lang="pa">ਪੰਜਾਬੀ</button>
+        <button type="button" class="lang-btn" data-lang="hi">हिन्दी</button>
+        <button type="button" class="lang-btn" data-lang="mr">मराठी</button>
+      </div>
+
+      <!-- Header Actions: Settings & Collapsible Menu Trigger -->
+      <div class="header-actions-group flex-row gap-xs">
+        <button type="button" class="btn-settings-header" id="btn-open-settings-header" title="Settings & API Key">⚙️</button>
+        <button type="button" class="btn-nav-menu" id="btn-nav-menu" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-drawer">
+          <span class="nav-menu-icon">☰</span>
+          <span data-i18n="nav.menu">Menu</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Slide-out Navigation Drawer Backdrop -->
+  <div id="nav-drawer-backdrop" class="nav-drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- Slide-out Navigation Drawer -->
+  <aside id="nav-drawer" class="nav-drawer" aria-label="Navigation Menu" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="drawer-brand">
+        <div class="drawer-logo-circle">🌱</div>
+        <div>
+          <div class="drawer-title" data-i18n="app.title">FarmWise</div>
+          <div class="drawer-subtitle" data-i18n="nav.allSections">All Modules & Sections</div>
+        </div>
+      </div>
+      <button type="button" id="btn-close-nav-drawer" class="btn-drawer-close" aria-label="Close navigation menu">✕</button>
+    </div>
+
+    <div class="drawer-body">
+      <div class="drawer-section-heading" data-i18n="nav.allSections">All Modules & Navigation</div>
+      <nav class="drawer-nav-list" id="drawer-nav-list">
+        <a href="index.html" class="drawer-nav-item" data-page="home">
+          <span class="drawer-nav-icon">🏠</span>
+          <span class="drawer-nav-text" data-i18n="nav.dashboard">Home</span>
+        </a>
+        <a href="profile.html" class="drawer-nav-item" data-page="profile">
+          <span class="drawer-nav-icon">📝</span>
+          <span class="drawer-nav-text" data-i18n="nav.profile">Farm Profile</span>
+        </a>
+        <a href="advisory.html" class="drawer-nav-item" data-page="advisory">
+          <span class="drawer-nav-icon">⭐</span>
+          <span class="drawer-nav-text" data-i18n="nav.recommendation">Crop Advisory</span>
+        </a>
+        <a href="crop-scan.html" class="drawer-nav-item active" data-page="crop-scan">
+          <span class="drawer-nav-icon">🔍</span>
+          <span class="drawer-nav-text" data-i18n="nav.cropScan">Crop Scan (AI)</span>
+        </a>
+        <a href="assistant.html" class="drawer-nav-item" data-page="assistant">
+          <span class="drawer-nav-icon">🤖</span>
+          <span class="drawer-nav-text" data-i18n="nav.assistant">AI Farm Assistant</span>
+        </a>
+        <a href="weather.html" class="drawer-nav-item" data-page="weather">
+          <span class="drawer-nav-icon">🌦️</span>
+          <span class="drawer-nav-text" data-i18n="nav.weather">Weather Forecast</span>
+        </a>
+        <a href="iot.html" class="drawer-nav-item" data-page="iot">
+          <span class="drawer-nav-icon">📡</span>
+          <span class="drawer-nav-text" data-i18n="nav.iot">IoT Farm Monitor</span>
+        </a>
+        <button type="button" id="btn-drawer-settings" class="drawer-nav-item btn-drawer-action">
+          <span class="drawer-nav-icon">⚙️</span>
+          <span class="drawer-nav-text" data-i18n="nav.settings">Settings & API Key</span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="drawer-footer">
+      <div class="drawer-footer-badge">
+        <span>🟢</span>
+        <span data-i18n="app.deterministicActive">Deterministic Calculation Active</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Demo Presets & Quick Test Controls Bar -->
+  <div class="demo-bar" id="demo-controls-bar">
+    <!-- Populated dynamically by demoControls.js -->
+  </div>
+
+  <!-- Main Container -->
+  <main class="main-content">
+
+    <!-- Multimodal AI Crop Disease Scanner -->
+    <section id="section-cropscan">
+      <div id="crop-scan-container">
+        <!-- Populated by cropScanView.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Application Toast Notification Element -->
+  <div id="farmwise-toast" class="farmwise-toast"></div>
+
+  <!-- Application Bootstrap -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

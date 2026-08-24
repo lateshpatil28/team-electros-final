@@ -102,24 +102,39 @@
 .header-nav {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.25rem;
 }
 
+.header-nav-link,
 .nav-link {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-sub);
-  padding: 0.4rem 0.75rem;
+  padding: 0.4rem 0.65rem;
   border-radius: var(--radius-sm);
   transition: all var(--transition-fast);
   cursor: pointer;
   background: transparent;
-  border: none;
+  border: 1px solid transparent;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
+.header-nav-link:hover,
 .nav-link:hover {
   color: var(--primary-700);
   background: var(--primary-50);
+  border-color: var(--primary-100);
+}
+
+.header-nav-link.active,
+.nav-link.active {
+  color: var(--primary-900);
+  background: var(--primary-100);
+  border-color: var(--primary-300);
+  font-weight: 700;
 }
 
 /* Demo Controls Bar */
@@ -2929,13 +2944,200 @@
   color: #be123c !important;
 }
 
+/* ==========================================================================
+   Home Page Dashboard & Quick-Access Module Grid Styles
+   ========================================================================== */
+.home-hero-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.home-hero-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--primary-900);
+  line-height: 1.25;
+}
+
+.home-hero-desc {
+  font-size: 1.05rem;
+  color: var(--text-sub);
+  max-width: 760px;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.home-status-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  background: #ffffff;
+  border: 1px solid var(--primary-200);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.25rem;
+  box-shadow: 0 2px 6px rgba(22, 163, 74, 0.08);
+}
+
+.home-status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.88rem;
+  color: var(--text-main);
+}
+
+.home-status-label {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.home-status-val {
+  font-weight: 700;
+  color: var(--primary-800);
+}
+
+.home-status-divider {
+  color: var(--border-medium);
+}
+
+.home-section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2.25rem 0 1.25rem;
+}
+
+.home-section-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.home-modules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.home-module-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.25s ease;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.home-module-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -6px rgba(15, 23, 42, 0.1);
+  border-color: var(--primary-400);
+}
+
+.home-module-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.home-module-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  background: var(--primary-50);
+  border: 1px solid var(--primary-200);
+}
+
+.home-module-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-full);
+}
+
+.home-module-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.45rem;
+}
+
+.home-module-desc {
+  font-size: 0.88rem;
+  color: var(--text-sub);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.home-module-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--primary-700);
+  transition: gap 0.2s ease;
+}
+
+.home-module-card:hover .home-module-action {
+  color: var(--primary-800);
+  gap: 0.75rem;
+}
+
 /* Responsive adjustments */
+@media (max-width: 1024px) {
+  .home-modules-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 900px) {
   .scan-input-layout, .articles-grid, .regional-crops-grid, .iot-dials-grid, .hw-specs-grid, .hw-sensor-items, .weather-hero-metrics, .econ-metrics-grid {
     grid-template-columns: 1fr !important;
   }
   .forecast-cards-row {
     grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-modules-grid {
+    grid-template-columns: 1fr;
+  }
+  .header-nav {
+    display: none;
   }
 }
 
@@ -2950,5 +3152,6 @@
     flex-direction: column;
   }
 }
+
 
 

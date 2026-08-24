@@ -162,25 +162,38 @@ def run_all_tests():
         print("[FAIL] Test 8: IoT service missing sensor state or hardware specifications")
 
     # -------------------------------------------------------------
-    # TEST 9: Verify HTML DOM Mounts & Accessibility
+    # TEST 9: Verify HTML DOM Mounts & Multi-Page Accessibility
     # -------------------------------------------------------------
     total_tests += 1
-    index_path = os.path.join(WORKSPACE, 'index.html')
-    with open(index_path, 'r', encoding='utf-8') as f:
-        html_code = f.read()
+    pages_to_sections = {
+        'index.html': ['section-regional', 'section-library'],
+        'profile.html': ['section-profile', 'farm-profile-container', 'farm-context-summary'],
+        'advisory.html': ['section-recommendation', 'section-alternatives', 'section-whatif'],
+        'crop-scan.html': ['section-cropscan', 'crop-scan-container'],
+        'assistant.html': ['section-assistant', 'section-library'],
+        'weather.html': ['section-weather', 'weather-container'],
+        'iot.html': ['section-iot', 'iot-monitor-container']
+    }
 
-    required_sections = [
-      'section-profile', 'section-recommendation', 'section-alternatives',
-      'section-whatif', 'section-cropscan', 'section-assistant',
-      'section-library', 'section-regional', 'section-weather', 'section-iot'
-    ]
-    all_sections_present = all(sec in html_code for sec in required_sections)
+    all_sections_present = True
+    for page_name, sections in pages_to_sections.items():
+        page_path = os.path.join(WORKSPACE, page_name)
+        if not os.path.exists(page_path):
+            print(f"[FAIL] Missing page: {page_name}")
+            all_sections_present = False
+            continue
+        with open(page_path, 'r', encoding='utf-8') as f:
+            code = f.read()
+        for sec in sections:
+            if sec not in code:
+                print(f"[FAIL] Missing section '{sec}' in {page_name}")
+                all_sections_present = False
 
     if all_sections_present:
-        print("[PASS] Test 9: HTML container contains all 10 feature sections and mounts")
+        print("[PASS] Test 9: Multi-Page HTML architecture contains all 7 pages and 10 feature sections/mounts")
         passed_tests += 1
     else:
-        print("[FAIL] Test 9: Missing feature sections in index.html")
+        print("[FAIL] Test 9: Missing feature sections in multi-page HTML files")
 
     # -------------------------------------------------------------
     # Final Summary

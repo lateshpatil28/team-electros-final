@@ -48,8 +48,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Setup Language Selector in Header
   initLanguageSelector();
 
+  // Setup Multi-Page Active Navigation Highlighting
+  initActiveNavigation();
+
   // Setup Collapsible Navigation Menu Drawer
   initNavDrawer();
+
+  // Setup Live Home Dashboard Status Bar
+  initHomeStatusStrip();
 
   // Setup Settings button in Header
   const settingsBtn = document.getElementById('btn-open-settings-header');
@@ -64,6 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
   i18n.subscribe(() => {
     updateStaticDOMTranslations();
     updateLanguageSelectorActiveState();
+    initActiveNavigation();
+    updateHomeStatusStrip();
+  });
+
+  // Subscribe to farmStore changes to update live Home status banner
+  farmStore.subscribe(() => {
+    updateHomeStatusStrip();
   });
 
   // Global smooth scroll helper
@@ -84,12 +97,29 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('✓ FarmWise MVP Fully Active. Current Language:', i18n.getLanguage());
 });
 
+function initActiveNavigation() {
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const links = document.querySelectorAll('.drawer-nav-item[href], .header-nav-link[href]');
+  
+  links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href) return;
+    const cleanHref = href.split('#')[0];
+    const isCurrent = cleanHref === currentPath || (currentPath === '' && cleanHref === 'index.html');
+    if (isCurrent) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+}
+
 function initNavDrawer() {
   const btnNavMenu = document.getElementById('btn-nav-menu');
   const btnCloseDrawer = document.getElementById('btn-close-nav-drawer');
   const drawer = document.getElementById('nav-drawer');
   const backdrop = document.getElementById('nav-drawer-backdrop');
-  const drawerNavItems = document.querySelectorAll('.drawer-nav-item[data-target]');
+  const drawerNavItems = document.querySelectorAll('.drawer-nav-item');
   const btnDrawerSettings = document.getElementById('btn-drawer-settings');
 
   function openDrawer() {
@@ -120,14 +150,16 @@ function initNavDrawer() {
 
   drawerNavItems.forEach(item => {
     item.addEventListener('click', (e) => {
-      e.preventDefault();
       const targetId = item.getAttribute('data-target');
-      if (targetId) {
+      if (targetId && document.getElementById(targetId)) {
+        e.preventDefault();
         window.scrollToSection(targetId);
         drawerNavItems.forEach(i => i.classList.remove('active'));
         item.classList.add('active');
+        closeDrawer();
+      } else {
+        closeDrawer();
       }
-      closeDrawer();
     });
   });
 
@@ -135,39 +167,53 @@ function initNavDrawer() {
     closeDrawer();
     window.openSettingsModal?.();
   });
+}
 
-  // Scrollspy to highlight active section in drawer
-  const observedSections = [
-    'journey-banner-section',
-    'section-profile',
-    'section-recommendation',
-    'section-alternatives',
-    'section-whatif',
-    'section-cropscan',
-    'section-assistant',
-    'section-library',
-    'section-regional',
-    'section-weather',
-    'section-iot'
-  ];
+function initHomeStatusStrip() {
+  updateHomeStatusStrip();
+}
 
-  window.addEventListener('scroll', () => {
-    const scrollPos = window.pageYOffset + 120;
-    for (let i = observedSections.length - 1; i >= 0; i--) {
-      const sectionId = observedSections[i];
-      const secEl = document.getElementById(sectionId);
-      if (secEl && secEl.offsetTop <= scrollPos) {
-        drawerNavItems.forEach(item => {
-          if (item.getAttribute('data-target') === sectionId) {
-            item.classList.add('active');
-          } else {
-            item.classList.remove('active');
-          }
-        });
-        break;
-      }
-    }
-  }, { passive: true });
+function updateHomeStatusStrip() {
+  const container = document.getElementById('home-status-strip');
+  if (!container) return;
+
+  const ctx = farmStore.getContext();
+  const farmer = ctx.farmer || {};
+  const weather = ctx.weather || {};
+
+  const name = farmer.farmerName || 'Farmer';
+  const crop = i18n.translateCrop ? i18n.translateCrop(farmer.crop) : farmer.crop;
+  const stage = i18n.translateStage ? i18n.translateStage(farmer.cropStage) : farmer.cropStage;
+  const location = `${farmer.district || ''}, ${farmer.state || ''}`.trim().replace(/^,\s*|,\s*$/g, '');
+  const budget = farmer.budget ? `₹${farmer.budget.toLocaleString('en-IN')}` : '₹0';
+  const risk = i18n.translateRisk ? i18n.translateRisk(ctx.cropHealthRisk) : ctx.cropHealthRisk;
+
+  container.innerHTML = `
+    <div class="home-status-item">
+      <span class="home-status-label">${t('profile.farmerName')}:</span>
+      <span class="home-status-val">${name}</span>
+    </div>
+    <span class="home-status-divider">•</span>
+    <div class="home-status-item">
+      <span class="home-status-label">${t('profile.crop')}:</span>
+      <span class="home-status-val">${crop} (${stage})</span>
+    </div>
+    <span class="home-status-divider">•</span>
+    <div class="home-status-item">
+      <span class="home-status-label">${t('profile.district')}:</span>
+      <span class="home-status-val">${location}</span>
+    </div>
+    <span class="home-status-divider">•</span>
+    <div class="home-status-item">
+      <span class="home-status-label">${t('profile.budget')}:</span>
+      <span class="home-status-val">${budget}</span>
+    </div>
+    <span class="home-status-divider">•</span>
+    <div class="home-status-item">
+      <span class="home-status-label">${t('context.cropHealthRisk')}:</span>
+      <span class="home-status-val">${risk}</span>
+    </div>
+  `;
 }
 
 function initLanguageSelector() {

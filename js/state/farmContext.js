@@ -34,14 +34,19 @@ const DEFAULT_FARM_CONTEXT = {
   timestamp: Date.now()
 };
 
+// Storage Keys for Multi-Page Persistence
+const STORAGE_CONTEXT_KEY = 'farmwise_farm_context';
+const STORAGE_WHATIF_KEY = 'farmwise_whatif_scenario';
+
 class FarmContextStore {
   constructor() {
-    this.context = JSON.parse(JSON.stringify(DEFAULT_FARM_CONTEXT));
+    this.context = this.loadSavedContext();
     this.listeners = new Set();
     this.whatIfListeners = new Set();
 
-    // Default What-If scenario mirroring active context
-    this.whatIfScenario = {
+    // Default What-If scenario mirroring active context or loaded from storage
+    const savedWhatIf = this.loadSavedWhatIf();
+    this.whatIfScenario = savedWhatIf || {
       active: false,
       budget: this.context.farmer.budget,
       waterAvailability: this.context.farmer.waterAvailability,
@@ -62,6 +67,58 @@ class FarmContextStore {
         this.notify();
       });
     }
+
+    // Listen for storage events across tabs / windows
+    if (typeof window !== 'undefined') {
+      window.addEventListener('storage', (e) => {
+        if (e.key === STORAGE_CONTEXT_KEY && e.newValue) {
+          try {
+            const parsed = JSON.parse(e.newValue);
+            if (parsed && parsed.farmer) {
+              this.context = parsed;
+              this.recompute();
+              this.notify();
+            }
+          } catch (err) {}
+        }
+      });
+    }
+  }
+
+  loadSavedContext() {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        const saved = localStorage.getItem(STORAGE_CONTEXT_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.farmer && parsed.weather) {
+            return parsed;
+          }
+        }
+      }
+    } catch (e) {}
+    return JSON.parse(JSON.stringify(DEFAULT_FARM_CONTEXT));
+  }
+
+  loadSavedWhatIf() {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        const saved = localStorage.getItem(STORAGE_WHATIF_KEY);
+        if (saved) {
+          return JSON.parse(saved);
+        }
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  saveToStorage() {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem(STORAGE_CONTEXT_KEY, JSON.stringify(this.context));
+        localStorage.setItem(STORAGE_WHATIF_KEY, JSON.stringify(this.whatIfScenario));
+      }
+    } catch (e) {}
   }
 
   getContext() {
@@ -188,6 +245,7 @@ class FarmContextStore {
   }
 
   notify() {
+    this.saveToStorage();
     const ctx = this.getContext();
     const result = this.getEngineResult();
     this.listeners.forEach(fn => {
@@ -201,6 +259,7 @@ class FarmContextStore {
   }
 
   notifyWhatIf() {
+    this.saveToStorage();
     const whatIf = this.getWhatIfScenario();
     const comparison = this.runWhatIfComparison();
     this.whatIfListeners.forEach(fn => {
