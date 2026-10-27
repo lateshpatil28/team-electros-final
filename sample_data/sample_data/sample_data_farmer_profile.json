@@ -1,0 +1,13 @@
+
+{
+  "farmer_id": "DEMO001",
+  "state": "Punjab",
+  "district": "Ludhiana",
+  "language": "English",
+  "crop": "Wheat",
+  "growth_stage": "Vegetative",
+  "farm_size_acres": 2,
+  "budget_inr": 15000,
+  "water_availability": "Moderate",
+  "soil_condition": "Loamy"
+}
