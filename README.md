@@ -51,8 +51,8 @@
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/FarmWise.git
-   cd FarmWise
+   git clone https://github.com/lateshpatil28/team-electros-final.git
+cd team-electros-final
    ```
 
 2. **Start the local server**:
