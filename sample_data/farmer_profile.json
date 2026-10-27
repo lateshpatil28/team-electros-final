@@ -1,0 +1,14 @@
+
+{
+  "farmer_name": "Sample Farmer",
+  "state": "Punjab",
+  "district": "Ludhiana",
+  "preferred_language": "Punjabi",
+  "crop": "Wheat",
+  "crop_stage": "Growing",
+  "farm_size_acres": 2,
+  "budget_inr": 10000,
+  "water_availability": "Moderate",
+  "soil_type": "Loamy",
+  "notes": "Sample data for testing FarmWise crop advisory recommendations."
+}
